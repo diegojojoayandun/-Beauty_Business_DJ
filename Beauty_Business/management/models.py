@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
-    name_category = models.CharField(max_length=30)
+    name_category = models.CharField(max_length=29)
 
     class Meta:
         managed = True
