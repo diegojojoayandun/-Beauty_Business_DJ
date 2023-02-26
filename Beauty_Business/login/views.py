@@ -4,10 +4,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from management import templates
-#from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
 def signup(request):
     if request.method == 'GET':
         return render(request, "signup.html", {'form': UserCreationForm})
@@ -33,12 +31,12 @@ def signup(request):
 
 def signout(request):
     logout(request)
-    return redirect("home")
+    return redirect("signin")
 
 
 def signin(request):
     if request.method == 'GET':
-        return render(request, "login2.html", {'form': AuthenticationForm})
+        return render(request, "signin.html", {'form': AuthenticationForm})
     else:
         user = authenticate(request,
                             username=request.POST['username'],
@@ -55,5 +53,3 @@ def signin(request):
             return redirect('/management/',user.username)
 
 
-def home(request):
-    return render(request, 'home.html')

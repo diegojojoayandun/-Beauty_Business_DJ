@@ -23,7 +23,6 @@ urlpatterns = [
     path("management/", include("management.urls")),
     path('signup/', views.signup, name="signup"),
     path('logout/', views.signout, name="logout"),
-    path('home/', views.home, name="home"),
     path('signin/', views.signin, name="signin")
 
 ]

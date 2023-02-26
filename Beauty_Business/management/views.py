@@ -95,7 +95,7 @@ def sales_record(request):
     return response
 
 @login_required
-@staff_member_required(login_url='signin')
+@staff_member_required()
 def purchases(request):
     all_marks = Mark.objects.all()
     all_categories = Category.objects.all()
@@ -109,7 +109,7 @@ def purchases(request):
     })
 
 @login_required
-@staff_member_required(login_url='signin')
+@staff_member_required()
 def mark_register(request):
     if request.method == "POST":
         """ obtenemos el id del producto vendido, la cantidad casteados como enteros y el precio """
@@ -134,7 +134,7 @@ def mark_register(request):
     })
 
 @login_required
-@staff_member_required(login_url='signin')
+@staff_member_required()
 def category_register(request):
     if request.method == "POST":
         """ obtenemos el id del producto vendido, la cantidad casteados como enteros y el precio """
@@ -160,7 +160,7 @@ def category_register(request):
     })
 
 @login_required
-@staff_member_required(login_url='signin')
+@staff_member_required()
 def provider_register(request):
     if request.method == "POST":
         """ obtenemos el id del producto vendido, la cantidad casteados como enteros y el precio """
@@ -190,7 +190,7 @@ def provider_register(request):
     })
 
 @login_required
-@staff_member_required(login_url='signin')
+@staff_member_required()
 def product_register(request):
     if request.method == "POST":
         """  """
@@ -222,7 +222,7 @@ def product_register(request):
 
 
 @login_required
-@staff_member_required(login_url='signin')
+@staff_member_required()
 def stock_register(request):
     if request.method == "POST":
         """  """
@@ -263,7 +263,7 @@ def confirmation(request):
     return render(request, "management/confirmation.html", {
     })
 
-
+@login_required
 def error_handling(request):
     return render(request, "management/error_handling.html", {
     })
