@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views_stock import views_st
 
 
 app_name = "management"
@@ -13,5 +14,6 @@ urlpatterns = [
     path("product_register/", views.product_register, name="product_register"),
     path("stock_register/", views.stock_register, name="stock_register"),
     path("confirmation/", views.confirmation, name="confirmation"),
-    path("error_handling/", views.error_handling, name="error_handling")
+    path("error_handling/", views.error_handling, name="error_handling"),
+    path("stock/<int:id>", views_st.all_stock, name="all_stock"),
 ]
