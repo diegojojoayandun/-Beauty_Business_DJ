@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %} {% block content %}
+<h1>Registro</h1>
+
+{{error}}
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center h-100">
+    <div class="col-9">
+      <form method="POST">
+        {{form.as_p}} {% csrf_token %}
+        <button>Registrarse</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock%}
