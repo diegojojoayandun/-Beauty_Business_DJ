@@ -1,47 +1,37 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-<div class="alert alert-warning" role="alert">
-    {{error}}
-</div
-
-
-
-<section class="vh-100">
-  <div class="container py-5 h-100 gradient-custom">
+<h2>{{error}}</h2>
+<section class="h-100 h-custom">
+  <div class="container py-5 h-100 gradient-custom-2">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-lg-9 col-xl-7">
-        <div
-          class="card shadow-2-strong card-registration"
-          style="border-radius: 15px"
-        >
-          <div class="card-body p-4 p-md-5">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <div class="card-body p-4 p-md-4">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Formulario de Registro</h3>
             <form method="POST">
               {% csrf_token %}
               <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="">
-                    <label>Username: </label>
-                    {{ form.username }}
-                  </div>
+                <div class="form-outline mb-4 col-md-6">
+                  <label>Nombre de Usuario: </label>
+                  {{ form.username }}
                 </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label>Contraseña: </label>
-                    {{ form.password1 }}
-                  </div>
-                </div>
-
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label>Confirmar: </label>
-                    {{form.password2}}
-                  </div>
+              </div>
+              <div class="row">
+                <div class="form-outline mb-4 col-md-6">
+                  <label>Contraseña: </label>
+                  {{ form.password1 }}
                 </div>
               </div>
 
-              <div class="mt-4 pt-2">
-                <button class="btn btn-primary">Registrarse</button>
+              <div class="form-outline mb-4 col-md-6">
+                <label>Confirmar contraseña: </label>
+                {{form.password2}}
+              </div>
+
+              <div class="mt-4 pt-2 col-md-2">
+                <button class="btn btn-primary gradient-custom-2">
+                  Registrarse
+                </button>
               </div>
             </form>
           </div>
