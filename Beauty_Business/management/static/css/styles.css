@@ -198,6 +198,7 @@ input {
 .card-registration .select-arrow {
   top: 13px;
 }
+<<<<<<< HEAD:Beauty_Business/management/static/management/styles.css
 
 #hint_id_username,
 #hint_id_password1 {
@@ -211,3 +212,5 @@ input {
 body > main > form > ul > li {
   display: none;
 }
+=======
+>>>>>>> b7776e229b0b04a29e74aeb38b795070b2d8365f:Beauty_Business/management/static/css/styles.css
