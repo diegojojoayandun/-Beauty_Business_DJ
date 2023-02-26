@@ -6,6 +6,7 @@ from django.db import IntegrityError
 from management import templates
 
 
+
 def signup(request):
     if request.method == 'GET':
         return render(request, "signup.html", {'form': UserCreationForm})

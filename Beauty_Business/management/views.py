@@ -8,8 +8,10 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.views.decorators.cache import cache_page
 
 @login_required
+#@cache_page(60 * 15)
 def index(request):
     products_available = Stock.objects.raw(
         '''SELECT 1 AS stock_id, s.product_id_id,
@@ -30,6 +32,7 @@ def index(request):
     })
 
 @login_required
+#@cache_page(60 * 15)
 def sales_record(request):
     """ primero verificamos si es un metodo post """
     if request.method == "POST":
