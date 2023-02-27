@@ -27,7 +27,7 @@ def get_stock_all_items(request):
 
 @login_required
 def get_stock_by_name(request, name):
-    print("squi")
+    '''Get all products available in stock by name'''
     stock_available = Stock.objects.raw(
         '''SELECT 1 AS stock_id, s.product_id_id,
             sum(s.amount) AS total,
@@ -47,7 +47,7 @@ def get_stock_by_name(request, name):
 
 @login_required
 def get_stock_by_id(request, id):
-    print(type(id))
+    '''Get all products available in stock by ID'''
     stock_available = Stock.objects.raw(
         '''SELECT 1 AS stock_id, s.product_id_id,
             sum(s.amount) AS total,
