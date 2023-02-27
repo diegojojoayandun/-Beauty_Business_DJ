@@ -1,13 +1,13 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
 <h2>{{error}}</h2>
-<section class="h-100 h-custom">
-  <div class="container py-5 h-100 gradient-custom-2">
+<section class="h-100 gradient-form" style="background-color: #eee">
+  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-8 col-xl-6">
         <div class="card rounded-3">
-          <div class="card-body p-4 p-md-4">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Formulario de Registro</h3>
+          <div class="card-body p-md-5 mx-md-4">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-2">Formulario de Registro</h3>
             <form method="POST">
               {% csrf_token %}
               <div class="row">

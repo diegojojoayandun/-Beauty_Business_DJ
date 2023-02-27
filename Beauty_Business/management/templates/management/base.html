@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beauty Business</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>Panel de Administracion</h1>
+    <nav id="navegador">
+      <ul>
+        <li>
+          <a href="/management/">Registro de Ventas</a>
+        </li>
+        <li>
+          <a href="/management/purchases/">Registro de Compras</a>
+        </li>
+        <!-- <li><a href="estadisticas.html">Estadísticas</a></li> -->
+        <li>
+          <a href="/management/stock/">Inventario</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li><a href="/logout">Cerrar Sesión</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% block content %} {% endblock%} {% if messages %} {% for m in messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      Swal.fire({
+        title: document.title,
+        text: "{{m}}",
+        icon: "{{ m.level_tag }}",
+      });
+    </script>
+    {% endfor %} {% endif %}
+  </body>
+</html>

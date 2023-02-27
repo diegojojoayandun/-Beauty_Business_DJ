@@ -1,0 +1,23 @@
+{% extends 'management/base.html' %} {% block content %}
+<h1>Stock de Productos</h1>
+<div style="margin: 0 auto">
+  {% if stock_available %}
+  <table>
+    <tr>
+      <th>ID prod.</th>
+      <th>Nombre del producto</th>
+      <th>U. disponibles</th>
+    </tr>
+    {% for available in stock_available %}
+    <tr>
+      <td>{{ available.product_id_id }}</td>
+      <td>{{ available.nombre }}</td>
+      <td>{{ available.total }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</div>
+
+<br /><br /><br />
+{% endblock %}

@@ -4,10 +4,11 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from management import templates
-
+from django.contrib import messages
 
 
 def signup(request):
+    """Register a new user in the database"""
     if request.method == 'GET':
         return render(request, "signup.html", {'form': UserCreationForm})
     else:
@@ -20,22 +21,27 @@ def signup(request):
                 login(request, user)
                 return redirect('/management/')
             except IntegrityError:
+                messages.error(
+                    request, "El usuario ya se encuentra registrado"
+                    )
                 return render(
                     request, "signup.html", {
                         'form': UserCreationForm,
-                        'error': 'Usuario ya existe'})
-
+                        })
+        messages.error(request, "Contraseña no coincide")
         return render(
             request, "signup.html", {
-                'form': UserCreationForm, 'error': 'Password No corresponde'})
+                'form': UserCreationForm})
 
 
 def signout(request):
+    """Logout an user from the app and delete the current session"""
     logout(request)
     return redirect("signin")
 
 
 def signin(request):
+    """Login an user in the database"""
     if request.method == 'GET':
         return render(request, "signin.html", {'form': AuthenticationForm})
     else:
@@ -44,13 +50,11 @@ def signin(request):
                             password=request.POST['password'])
 
         if user is None:
+            messages.error(request, "nombre de usuario o password incorrectos")
             return render(
                 request, 'signin.html', {
-                    'form': AuthenticationForm,
-                    'error': 'nombre de usuario o password incorrectos'})
+                    'form': AuthenticationForm})
         else:
             login(request, user)
             print(user.username)
-            return redirect('/management/',user.username)
-
-
+            return redirect('/management/', user.username)

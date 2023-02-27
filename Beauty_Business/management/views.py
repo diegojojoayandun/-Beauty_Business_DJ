@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.views.decorators.cache import cache_page
+from django.contrib import messages
 
 @login_required
 #@cache_page(60 * 15)
@@ -54,13 +54,13 @@ def sales_record(request):
 
 
     if sales_units['total'] == None:
-        return render(request, "management/error_handling.html", {
-            "error": "No hay existencias en stock",
-        })
+        messages.warning(request,"No hay existencias en stock")
+        return redirect('/management/')
+
+
     elif sales_units['total'] < amount:
-        return render(request, "management/error_handling.html", {
-            "error": "No existen suficientes unidades para realizar la venta",
-        })
+        messages.warning(request,"No existen suficientes unidades para realizar la venta")
+        return redirect('/management/')
 
     """ ahora buscamos los lotes de producto en el inventario 'stock' para descontar los vendido """
     product_in_stock = Stock.objects.filter(product_id_id = sold_product_id, amount__gt = 0).values()
@@ -91,11 +91,12 @@ def sales_record(request):
                     amount -= amount
                 elif amount == 0:
                     break
-        response = redirect('/management/confirmation')
-        return response
 
-    response = redirect('/management/confirmation')
-    return response
+        messages.success(request,"La venta fue realizada con exito")
+        return redirect('/management/')
+
+    messages.success(request,"La venta fue realizada con exito")
+    return redirect('/management/')
 
 @login_required
 @staff_member_required()
@@ -133,6 +134,9 @@ def mark_register(request):
         response = redirect('/management/confirmation')
         return response
     else:
+        messages.warning(request,"No hay existencias en stock")
+        return redirect('/management/')
+
         return render(request, "management/error_handling.html", {
     })
 

@@ -15,6 +15,7 @@ urlpatterns = [
     path("stock_register/", views.stock_register, name="stock_register"),
     path("confirmation/", views.confirmation, name="confirmation"),
     path("error_handling/", views.error_handling, name="error_handling"),
-    path("stock/<str:name>", views_st.stock_detail, name="stock"),
-    path("stock/", views_st.all_stock, name="all_stock"),
+    path("stock/<int:id>", views_st.get_stock_by_id, name="stock_by_id"),
+    path("stock/<str:name>", views_st.get_stock_by_name, name="stock_by_name"),
+    path("stock/", views_st.get_stock_all_items, name="stock_all_items"),
 ]
