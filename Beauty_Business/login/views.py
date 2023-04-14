@@ -57,4 +57,4 @@ def signin(request):
         else:
             login(request, user)
             print(user.username)
-            return redirect('/management/', user.username)
+            return redirect('/management/', {'username':user.username})
