@@ -23,37 +23,51 @@
   <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <i class="fas fa-bars"></i>
-
-            <div class="navbar-collapse collapse" id="navbarNav">
-                <ul class="nav navbar-nav mx-auto">
-                    <li class="nav-item px-4">
-                        <a class="nav-link" aria-current="page" href="/management/"><i class="fa fa-fw fa-usd"></i>Registro de ventas</a>
-                    </li>
-                    <li class="nav-item px-4">
-                    <a class="nav-link" href="/management/purchases/"
-                        ><i class="fa fa-fw fa-shopping-bag"></i>Registro de compras</a
-                    >
-                    </li>
-                    <li class="nav-item px-4">
-                    <a class="nav-link" href="/management/stock/"
-                        ><i class="fa fa-fw fa-book"></i>Inventario</a
-                    >
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item px-4">
-                    <a class="nav-link" href="/logout"
-                        ><i class="fa fa-fw fa-power-off"></i>Cerrar Sesion</a
-                    >
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/signin">
+          <img
+            src="{% static 'img/logo.webp' %}"
+            alt=""
+            width="50"
+            height="40"
+          />
+          Beauty Bussiness
+        </a>
+        <div class="navbar-collapse collapse" id="navbarNav">
+          <ul class="nav navbar-nav mx-auto">
+            <li class="nav-item px-4">
+              <a class="nav-link" aria-current="page" href="/management/"
+                ><i class="fa fa-fw fa-usd"></i>Registro de ventas</a
+              >
+            </li>
+            <li class="nav-item px-4">
+              <a class="nav-link" href="/management/purchases/"
+                ><i class="fa fa-fw fa-shopping-bag"></i>Registro de compras</a
+              >
+            </li>
+            <li class="nav-item px-4">
+              <a class="nav-link" href="/management/stock/"
+                ><i class="fa fa-fw fa-book"></i>Inventario</a
+              >
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item px-4">
+              <a class="nav-link" href="/logout"
+                ><i class="fa fa-fw fa-power-off"></i>Cerrar Sesion</a
+              >
+            </li>
+            {% endif %}
+          </ul>
         </div>
+      </div>
     </nav>
     {% block content %} {% endblock%}
     <!-- SCRIPTS -->

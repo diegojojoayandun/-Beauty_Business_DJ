@@ -99,7 +99,7 @@ class Sales(models.Model):
     stock_id = models.ForeignKey(Stock, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
     amount = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     price = models.IntegerField()
 
     class Meta:
@@ -108,3 +108,4 @@ class Sales(models.Model):
 
     def __str__(self):
         return "ID de la venta: {} - por {}".format(self.sale_id, self.user.username)
+

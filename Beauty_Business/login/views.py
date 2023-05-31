@@ -4,13 +4,19 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from management import templates
+from django import forms
 from django.contrib import messages
+
+class BoostratLoginForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 def signup(request):
     """Register a new user in the database"""
     if request.method == 'GET':
-        return render(request, "signup.html", {'form': UserCreationForm})
+        return render(request, "signup.html", {'form': BoostratLoginForm})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
@@ -26,12 +32,12 @@ def signup(request):
                     )
                 return render(
                     request, "signup.html", {
-                        'form': UserCreationForm,
+                        'form': BoostratLoginForm,
                         })
         messages.error(request, "Contraseña no coincide")
         return render(
             request, "signup.html", {
-                'form': UserCreationForm})
+                'form': BoostratLoginForm})
 
 
 def signout(request):
